@@ -168,12 +168,31 @@ export default function Scoreboard() {
         };
       } else if (
         player.id === id &&
-        currentValue.id === "resourceBuild" &&
-        player[currentValue.name] < 5
+        foodOrIron === "iron" &&
+        player[currentValue.name] < 5 &&
+        player.coins >= 1 &&
+        player.workers >= 2
       ) {
         return {
           ...player,
-          [foodOrIron]: player[foodOrIron] + 1,
+          workers: player.workers - 2,
+          coins: player.coins - 1,
+          [foodOrIron]: (player[foodOrIron] += 1),
+          [currentValue.name]: player[currentValue.name] + 1,
+        };
+      } else if (
+        player.id === id &&
+        foodOrIron === "food" &&
+        player[currentValue.name] < 5 &&
+        player.workers >= 3
+      ) {
+        return {
+          ...player,
+          workers: player.workers - 3,
+          [foodOrIron]:
+            player[foodOrIron] >= 1
+              ? player[foodOrIron] + 2
+              : player[foodOrIron] + 1,
           [currentValue.name]: player[currentValue.name] + 1,
         };
       } else {
@@ -207,11 +226,19 @@ export default function Scoreboard() {
         workerAmount += 0;
         break;
       case 1:
-      case 2:
         workerAmount += 1;
         break;
-      default:
+      case 2:
         workerAmount += 2;
+        break;
+      case 3:
+        workerAmount += 5;
+        break;
+      case 4:
+        workerAmount += 7;
+        break;
+      default:
+        workerAmount += 9;
     }
     switch (player.mines) {
       case 0:
@@ -221,11 +248,16 @@ export default function Scoreboard() {
         coinAmount += 1;
         break;
       case 2:
+        coinAmount += 3;
+        break;
       case 3:
-        coinAmount += 2;
+        coinAmount += 5;
+        break;
+      case 4:
+        coinAmount += 8;
         break;
       default:
-        coinAmount += 3;
+        coinAmount += 11;
     }
 
     const coinFromTeacher = player.teachers > 0 ? player.teachers * 3 : null;
