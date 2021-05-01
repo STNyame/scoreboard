@@ -124,14 +124,14 @@ export default function Scoreboard() {
     return set_players(updatedScore);
   };
 
-  const incrementScore = (player) => {
+  const incrementScore = (player, currentValue) => {
     const id = player;
     const new_players_array = players.map((player) => {
       if (player.id === id && player.score < 100) {
         return {
           ...player,
 
-          score: player.score + 1,
+          [currentValue]: player[currentValue] + 1,
         };
       } else {
         return player;
