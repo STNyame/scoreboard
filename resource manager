@@ -1,0 +1,63 @@
+1. infrastructure
+    - cities = Cost = 3 Food / 3 Coins / 3 Workers
+
+        - Capitol   = 1 worker / 2 coins
+        - city 2    = 1 worker / 1 coins
+        - city 3    = 1 worker / 2 coins
+        - city 4    = 1 worker / 1 coins 
+
+    - scholars
+
+        - Healers   = Cost = 4 workers / 2 coins | Gain = 2 workers
+        - Teachers  = Cost = 4 workers / 2 coins | Gain = 3 Coins
+        - Shamans   = Cost = 3 workers / 4 coins | Gain = 2 Lumen
+
+    - units
+
+    - mines = Cost = 2 workers / 1 coins | gain = 1 Iron (once)
+
+        1st = 1 coin 
+        2nd = 2 coins
+        3rd = 2 coins
+        4th = 3 coins
+        5th = 3 coins
+
+***
+        if (mines < 2) {
+            + 1 coin
+        } else if (mines >= 2 && mines < 4) {
+            + 2 coin
+        } else {
+            + 3 coin
+        }
+
+    - farms = cost 3 workers =| gain = 1 Food (once)
+
+        1st = 1 worker
+        2nd = 1 worker
+        3rd = 2 worker
+        4th = 2 worker
+        5th = 2 worker
+
+2. Calculate income button
+    - increments resources, based on infrastructure
+
+3. resources    
+    - Workers
+    - Coins
+    - Lumen
+    - Food
+    - Iron
+
+
+    [
+        {
+            id: number,
+            player: 'name',
+            workers: number,
+            coins: number,
+            lumen: number,
+            food: number,
+            iron: number
+        }
+    ]

@@ -15,10 +15,70 @@ function compareName(a, b) {
 
 export default function Scoreboard() {
   const [players, set_players] = useState([
-    { id: 1, name: "Violeta", score: 11 },
-    { id: 2, name: "Eszter", score: 14 },
-    { id: 3, name: "Jeroen v2", score: 4 },
-    { id: 4, name: "Lisa", score: 42 },
+    {
+      id: 1,
+      name: "Violeta",
+      score: 0,
+      cities: 0,
+      healers: 0,
+      teachers: 0,
+      shamans: 0,
+      farms: 0,
+      mines: 0,
+      workers: 0,
+      coins: 0,
+      lumen: 0,
+      food: 0,
+      iron: 0,
+    },
+    {
+      id: 2,
+      name: "Eszter",
+      score: 0,
+      cities: 0,
+      healers: 0,
+      teachers: 0,
+      shamans: 0,
+      farms: 0,
+      mines: 0,
+      workers: 0,
+      coins: 0,
+      lumen: 0,
+      food: 0,
+      iron: 0,
+    },
+    {
+      id: 3,
+      name: "Jeroen v2",
+      score: 0,
+      cities: 0,
+      healers: 0,
+      teachers: 0,
+      shamans: 0,
+      farms: 0,
+      mines: 0,
+      workers: 0,
+      coins: 0,
+      lumen: 0,
+      food: 0,
+      iron: 0,
+    },
+    {
+      id: 4,
+      name: "Lisa",
+      score: 0,
+      cities: 0,
+      healers: 0,
+      teachers: 0,
+      shamans: 0,
+      farms: 0,
+      mines: 0,
+      workers: 0,
+      coins: 0,
+      lumen: 0,
+      food: 0,
+      iron: 0,
+    },
   ]);
   const [sort_by, set_sort_by] = useState("score");
 
@@ -101,6 +161,17 @@ export default function Scoreboard() {
                 name={player.name}
                 score={player.score}
                 incrementScore={incrementScore}
+                cities={player.cities}
+                farms={player.farms}
+                mines={player.mines}
+                healers={player.healers}
+                teachers={player.teachers}
+                shamans={player.shamans}
+                worker={player.workers}
+                coin={player.coins}
+                lumen={player.lumen}
+                food={player.food}
+                iron={player.iron}
               />
             </li>
           );
