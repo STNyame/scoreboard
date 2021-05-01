@@ -18,7 +18,7 @@ export default function Scoreboard() {
     {
       id: 1,
       name: "Violeta",
-      score: 0,
+      scholars: 0,
       cities: 1,
       healers: 0,
       teachers: 0,
@@ -34,7 +34,7 @@ export default function Scoreboard() {
     {
       id: 2,
       name: "Eszter",
-      score: 0,
+      scholars: 0,
       cities: 1,
       healers: 0,
       teachers: 0,
@@ -50,7 +50,7 @@ export default function Scoreboard() {
     {
       id: 3,
       name: "Jeroen v2",
-      score: 0,
+      scholars: 0,
       cities: 1,
       healers: 0,
       teachers: 0,
@@ -66,7 +66,7 @@ export default function Scoreboard() {
     {
       id: 4,
       name: "Lisa",
-      score: 0,
+      scholars: 0,
       cities: 1,
       healers: 0,
       teachers: 0,
@@ -98,7 +98,7 @@ export default function Scoreboard() {
       {
         id: players.length + 1,
         name: newName,
-        score: 0,
+        scholars: 0,
         cities: 1,
         healers: 0,
         teachers: 0,
@@ -137,12 +137,44 @@ export default function Scoreboard() {
 
   const incrementValue = (player, currentValue) => {
     const id = player;
+    const foodOrIron = currentValue.name === "farms" ? "food" : "iron";
     const new_players_array = players.map((player) => {
-      if (player.id === id && player.score < 100) {
+      if (
+        player.id === id &&
+        currentValue.name === "cities" &&
+        player[currentValue.name] < 4 &&
+        player.food >= 3 &&
+        player.coins >= 3 &&
+        player.workers >= 3
+      ) {
         return {
           ...player,
 
-          [currentValue]: player[currentValue] + 1,
+          food: player.food - 3,
+          coins: player.coins - 3,
+          workers: player.workers - 3,
+
+          [currentValue.name]: player[currentValue.name] + 1,
+        };
+      } else if (
+        player.id === id &&
+        currentValue.id === "scholarbtn" &&
+        player.scholars < 4
+      ) {
+        return {
+          ...player,
+          scholars: player.scholars + 1,
+          [currentValue.name]: player[currentValue.name] + 1,
+        };
+      } else if (
+        player.id === id &&
+        currentValue.id === "resourceBuild" &&
+        player[currentValue.name] < 5
+      ) {
+        return {
+          ...player,
+          [foodOrIron]: player[foodOrIron] + 1,
+          [currentValue.name]: player[currentValue.name] + 1,
         };
       } else {
         return player;
@@ -240,7 +272,7 @@ export default function Scoreboard() {
               <Player
                 id={player.id}
                 name={player.name}
-                score={player.score}
+                scholars={player.scholars}
                 incrementScore={incrementValue}
                 incrementIncome={incrementIncome}
                 cities={player.cities}

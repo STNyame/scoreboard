@@ -3,8 +3,9 @@ export default function Player(props) {
   // the event listener callback
   const onClickIncrement = (propname) => {
     // call the callback prop passed down from the scoreboard
-    const currentProp = propname.target.name;
-    console.log(props[currentProp]);
+    const currentProp = propname.target;
+    console.log(propname.target.id);
+
     props.incrementScore(props.id, currentProp);
   };
 
@@ -19,21 +20,21 @@ export default function Player(props) {
         <button name="cities" onClick={onClickIncrement}>
           Cities: {props.cities}
         </button>
-        <button name="farms" onClick={onClickIncrement}>
+        <button id="resourceBuild" name="farms" onClick={onClickIncrement}>
           Farms: {props.farms}
         </button>
-        <button name="mines" onClick={onClickIncrement}>
+        <button id="resourceBuild" name="mines" onClick={onClickIncrement}>
           Mines: {props.mines}
         </button>
       </div>
       <div>
-        <button name="healers" onClick={onClickIncrement}>
+        <button id="scholarbtn" name="healers" onClick={onClickIncrement}>
           Healers: {props.healers}
         </button>
-        <button name="teachers" onClick={onClickIncrement}>
+        <button id="scholarbtn" name="teachers" onClick={onClickIncrement}>
           Teachers: {props.teachers}
         </button>
-        <button name="shamans" onClick={onClickIncrement}>
+        <button id="scholarbtn" name="shamans" onClick={onClickIncrement}>
           Shamans:{props.shamans}
         </button>
       </div>
@@ -42,7 +43,7 @@ export default function Player(props) {
         style={{ width: props.score + "%" }}
       />
       <div>
-        {props.name} Score: {props.score} Worker: {props.worker} Coin:
+        {props.name} Scholars: {props.scholars} Worker: {props.worker} Coin:
         {props.coin} Lumen: {props.lumen}
         <button className="income-button" onClick={onClickIncome}>
           increment

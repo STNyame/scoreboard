@@ -53,7 +53,7 @@
     [
         {
             id: number,
-            player: 'name',
+            player: 'name',  
             workers: number,
             coins: number,
             lumen: number,
