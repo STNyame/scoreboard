@@ -19,7 +19,7 @@ export default function Scoreboard() {
       id: 1,
       name: "Violeta",
       score: 0,
-      cities: 0,
+      cities: 1,
       healers: 0,
       teachers: 0,
       shamans: 0,
@@ -35,7 +35,7 @@ export default function Scoreboard() {
       id: 2,
       name: "Eszter",
       score: 0,
-      cities: 0,
+      cities: 1,
       healers: 0,
       teachers: 0,
       shamans: 0,
@@ -51,7 +51,7 @@ export default function Scoreboard() {
       id: 3,
       name: "Jeroen v2",
       score: 0,
-      cities: 0,
+      cities: 1,
       healers: 0,
       teachers: 0,
       shamans: 0,
@@ -67,7 +67,7 @@ export default function Scoreboard() {
       id: 4,
       name: "Lisa",
       score: 0,
-      cities: 0,
+      cities: 1,
       healers: 0,
       teachers: 0,
       shamans: 0,
@@ -99,6 +99,17 @@ export default function Scoreboard() {
         id: players.length + 1,
         name: newName,
         score: 0,
+        cities: 1,
+        healers: 0,
+        teachers: 0,
+        shamans: 0,
+        farms: 0,
+        mines: 0,
+        workers: 0,
+        coins: 0,
+        lumen: 0,
+        food: 0,
+        iron: 0,
       },
     ];
 
@@ -124,7 +135,7 @@ export default function Scoreboard() {
     return set_players(updatedScore);
   };
 
-  const incrementScore = (player, currentValue) => {
+  const incrementValue = (player, currentValue) => {
     const id = player;
     const new_players_array = players.map((player) => {
       if (player.id === id && player.score < 100) {
@@ -132,6 +143,76 @@ export default function Scoreboard() {
           ...player,
 
           [currentValue]: player[currentValue] + 1,
+        };
+      } else {
+        return player;
+      }
+    });
+    return set_players(new_players_array);
+  };
+
+  const incrementIncome = (playerId, player) => {
+    const id = playerId;
+    let coinAmount = 0;
+    let workerAmount = 0;
+    let lumenAmount = 0;
+
+    switch (player.cities) {
+      case 1:
+        (coinAmount += 2) && (workerAmount += 1);
+        break;
+      case 2:
+        (coinAmount += 3) && (workerAmount += 2);
+        break;
+      case 3:
+        (coinAmount += 4) && (workerAmount += 3);
+        break;
+      default:
+        (coinAmount += 5) && (workerAmount += 4);
+    }
+    switch (player.farms) {
+      case 0:
+        workerAmount += 0;
+        break;
+      case 1:
+      case 2:
+        workerAmount += 1;
+        break;
+      default:
+        workerAmount += 2;
+    }
+    switch (player.mines) {
+      case 0:
+        coinAmount = coinAmount;
+        break;
+      case 1:
+        coinAmount += 1;
+        break;
+      case 2:
+      case 3:
+        coinAmount += 2;
+        break;
+      default:
+        coinAmount += 3;
+    }
+
+    const coinFromTeacher = player.teachers > 0 ? player.teachers * 3 : null;
+    coinAmount += coinFromTeacher;
+
+    const workFromHealer = player.healers > 0 ? player.healers * 2 : null;
+    workerAmount += workFromHealer;
+
+    const lumenFromShaman = player.shamans > 0 ? player.shamans * 2 : null;
+    lumenAmount += lumenFromShaman;
+
+    const new_players_array = players.map((player) => {
+      if (player.id === id) {
+        return {
+          ...player,
+
+          workers: player.workers + workerAmount,
+          coins: player.coins + coinAmount,
+          lumen: player.lumen + lumenAmount,
         };
       } else {
         return player;
@@ -160,7 +241,8 @@ export default function Scoreboard() {
                 id={player.id}
                 name={player.name}
                 score={player.score}
-                incrementScore={incrementScore}
+                incrementScore={incrementValue}
+                incrementIncome={incrementIncome}
                 cities={player.cities}
                 farms={player.farms}
                 mines={player.mines}

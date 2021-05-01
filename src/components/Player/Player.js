@@ -7,6 +7,12 @@ export default function Player(props) {
     console.log(props[currentProp]);
     props.incrementScore(props.id, currentProp);
   };
+
+  const onClickIncome = () => {
+    // call the callback prop passed down from the scoreboard
+    props.incrementIncome(props.id, props);
+  };
+
   return (
     <li className="Player">
       <div>
@@ -21,8 +27,15 @@ export default function Player(props) {
         </button>
       </div>
       <div>
-        Healers: {props.healers} Teachers: {props.teachers} Shamans:{" "}
-        {props.shamans}{" "}
+        <button name="healers" onClick={onClickIncrement}>
+          Healers: {props.healers}
+        </button>
+        <button name="teachers" onClick={onClickIncrement}>
+          Teachers: {props.teachers}
+        </button>
+        <button name="shamans" onClick={onClickIncrement}>
+          Shamans:{props.shamans}
+        </button>
       </div>
       <div
         className="percentage_coloring"
@@ -31,7 +44,7 @@ export default function Player(props) {
       <div>
         {props.name} Score: {props.score} Worker: {props.worker} Coin:
         {props.coin} Lumen: {props.lumen}
-        <button className="income-button" onClick={onClickIncrement}>
+        <button className="income-button" onClick={onClickIncome}>
           increment
         </button>
       </div>
