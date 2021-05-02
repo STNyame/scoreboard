@@ -61,3 +61,62 @@
             iron: number
         }
     ]
+
+
+4. Starting stock colonies
+
+    -Ants:
+        - cities    = 1 
+        - workers   = 8
+        - lumen     = 8
+        - coins     = 12
+        - units     = 0
+
+    -Bee:
+        - cities    = 1 
+        - workers   = 6
+        - lumen     = 8
+        - coins     = 10
+        - units     = 1
+
+    -Beetle:
+        - cities    = 1 
+        - workers   = 8
+        - lumen     = 12
+        - coins     = 9
+        - units     = 0
+
+    -DragonFly:
+        - cities    = 1 
+        - workers   = 6
+        - lumen     = 8
+        - coins     = 10
+        - units     = 1
+
+    -Ladybug:
+        - cities    = 1 
+        - workers   = 6
+        - lumen     = 9
+        - coins     = 9
+        - raider    = 1
+
+    -Cricket:
+        - cities    = 1 
+        - workers   = 6
+        - lumen     = 9
+        - coins     = 12
+        - units     = 0
+
+    -Mantis:
+        - cities    = 1 
+        - workers   = 6
+        - lumen     = 12
+        - coins     = 12
+        - units     = 0
+
+    -Spider:
+        - cities    = 1 
+        - workers   = 6
+        - lumen     = 8
+        - coins     = 10
+        - units     = 1

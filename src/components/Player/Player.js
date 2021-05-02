@@ -4,7 +4,7 @@ export default function Player(props) {
   const onClickIncrement = (propname) => {
     // call the callback prop passed down from the scoreboard
     const currentProp = propname.target;
-    console.log(propname.target.id);
+    console.log(propname.target);
 
     props.incrementScore(props.id, currentProp);
   };
@@ -50,7 +50,12 @@ export default function Player(props) {
         </button>
       </div>
       <div>
-        Food: {props.food} Iron:{props.iron}
+        <button name="food" onClick={onClickIncrement}>
+          Food: {props.food}{" "}
+        </button>{" "}
+        <button name="iron" onClick={onClickIncrement}>
+          Iron: {props.iron}
+        </button>
       </div>
     </li>
   );

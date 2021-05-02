@@ -15,70 +15,70 @@ function compareName(a, b) {
 
 export default function Scoreboard() {
   const [players, set_players] = useState([
-    {
-      id: 1,
-      name: "Violeta",
-      scholars: 0,
-      cities: 1,
-      healers: 0,
-      teachers: 0,
-      shamans: 0,
-      farms: 0,
-      mines: 0,
-      workers: 0,
-      coins: 0,
-      lumen: 0,
-      food: 0,
-      iron: 0,
-    },
-    {
-      id: 2,
-      name: "Eszter",
-      scholars: 0,
-      cities: 1,
-      healers: 0,
-      teachers: 0,
-      shamans: 0,
-      farms: 0,
-      mines: 0,
-      workers: 0,
-      coins: 0,
-      lumen: 0,
-      food: 0,
-      iron: 0,
-    },
-    {
-      id: 3,
-      name: "Jeroen v2",
-      scholars: 0,
-      cities: 1,
-      healers: 0,
-      teachers: 0,
-      shamans: 0,
-      farms: 0,
-      mines: 0,
-      workers: 0,
-      coins: 0,
-      lumen: 0,
-      food: 0,
-      iron: 0,
-    },
-    {
-      id: 4,
-      name: "Lisa",
-      scholars: 0,
-      cities: 1,
-      healers: 0,
-      teachers: 0,
-      shamans: 0,
-      farms: 0,
-      mines: 0,
-      workers: 0,
-      coins: 0,
-      lumen: 0,
-      food: 0,
-      iron: 0,
-    },
+    // {
+    //   id: 1,
+    //   name: "Violeta",
+    //   scholars: 0,
+    //   cities: 1,
+    //   healers: 0,
+    //   teachers: 0,
+    //   shamans: 0,
+    //   farms: 0,
+    //   mines: 0,
+    //   workers: 0,
+    //   coins: 0,
+    //   lumen: 0,
+    //   food: 0,
+    //   iron: 0,
+    // },
+    // {
+    //   id: 2,
+    //   name: "Eszter",
+    //   scholars: 0,
+    //   cities: 1,
+    //   healers: 0,
+    //   teachers: 0,
+    //   shamans: 0,
+    //   farms: 0,
+    //   mines: 0,
+    //   workers: 0,
+    //   coins: 0,
+    //   lumen: 0,
+    //   food: 0,
+    //   iron: 0,
+    // },
+    // {
+    //   id: 3,
+    //   name: "Jeroen v2",
+    //   scholars: 0,
+    //   cities: 1,
+    //   healers: 0,
+    //   teachers: 0,
+    //   shamans: 0,
+    //   farms: 0,
+    //   mines: 0,
+    //   workers: 0,
+    //   coins: 0,
+    //   lumen: 0,
+    //   food: 0,
+    //   iron: 0,
+    // },
+    // {
+    //   id: 4,
+    //   name: "Lisa",
+    //   scholars: 0,
+    //   cities: 1,
+    //   healers: 0,
+    //   teachers: 0,
+    //   shamans: 0,
+    //   farms: 0,
+    //   mines: 0,
+    //   workers: 0,
+    //   coins: 0,
+    //   lumen: 0,
+    //   food: 0,
+    //   iron: 0,
+    // },
   ]);
   const [sort_by, set_sort_by] = useState("score");
 
@@ -92,12 +92,72 @@ export default function Scoreboard() {
     set_sort_by(event.target.value);
   };
 
-  const addNewPlayer = (newName) => {
+  const addNewPlayer = (newName, newTribe) => {
+    let resourcesPerTribe;
+    switch (newTribe) {
+      case "ants":
+        resourcesPerTribe = {
+          workers: 8,
+          lumen: 8,
+          coins: 12,
+        };
+        break;
+      case "bees":
+        resourcesPerTribe = {
+          coins: 10,
+          workers: 6,
+          lumen: 8,
+        };
+        break;
+      case "beetles":
+        resourcesPerTribe = {
+          coins: 9,
+          workers: 8,
+          lumen: 12,
+        };
+        break;
+      case "crickets":
+        resourcesPerTribe = {
+          coins: 12,
+          workers: 6,
+          lumen: 9,
+        };
+        break;
+      case "dragonflies":
+        resourcesPerTribe = {
+          workers: 6,
+          lumen: 8,
+          coins: 10,
+        };
+        break;
+      case "ladybugs":
+        resourcesPerTribe = {
+          workers: 6,
+          lumen: 9,
+          coins: 9,
+        };
+        break;
+      case "mantis":
+        resourcesPerTribe = {
+          workers: 6,
+          lumen: 12,
+          coins: 12,
+        };
+        break;
+      case "spiders":
+        resourcesPerTribe = {
+          workers: 6,
+          lumen: 8,
+          coins: 10,
+        };
+        break;
+    }
     const newPlayerList = [
       ...players,
       {
         id: players.length + 1,
         name: newName,
+        tribe: newTribe,
         scholars: 0,
         cities: 1,
         healers: 0,
@@ -105,9 +165,9 @@ export default function Scoreboard() {
         shamans: 0,
         farms: 0,
         mines: 0,
-        workers: 0,
-        coins: 0,
-        lumen: 0,
+        workers: resourcesPerTribe.workers,
+        coins: resourcesPerTribe.coins,
+        lumen: resourcesPerTribe.lumen,
         food: 0,
         iron: 0,
       },
@@ -137,7 +197,11 @@ export default function Scoreboard() {
 
   const incrementValue = (player, currentValue) => {
     const id = player;
-    const foodOrIron = currentValue.name === "farms" ? "food" : "iron";
+    let foodOrIron;
+    if (currentValue.name === "farms" || currentValue.name === "mines") {
+      foodOrIron = currentValue.name === "farms" ? "food" : "iron";
+    }
+
     const new_players_array = players.map((player) => {
       if (
         player.id === id &&
@@ -193,6 +257,18 @@ export default function Scoreboard() {
             player[foodOrIron] >= 1
               ? player[foodOrIron] + 2
               : player[foodOrIron] + 1,
+          [currentValue.name]: player[currentValue.name] + 1,
+        };
+      } else if (
+        (player.id === id &&
+          currentValue.name === "food" &&
+          player.lumen >= 2) ||
+        (currentValue.name === "iron" && player.lumen >= 3)
+      ) {
+        return {
+          ...player,
+          lumen:
+            currentValue.name === "food" ? player.lumen - 2 : player.lumen - 3,
           [currentValue.name]: player[currentValue.name] + 1,
         };
       } else {
@@ -300,26 +376,24 @@ export default function Scoreboard() {
       <ul>
         {players_sorted.map((player) => {
           return (
-            <li>
-              <Player
-                id={player.id}
-                name={player.name}
-                scholars={player.scholars}
-                incrementScore={incrementValue}
-                incrementIncome={incrementIncome}
-                cities={player.cities}
-                farms={player.farms}
-                mines={player.mines}
-                healers={player.healers}
-                teachers={player.teachers}
-                shamans={player.shamans}
-                worker={player.workers}
-                coin={player.coins}
-                lumen={player.lumen}
-                food={player.food}
-                iron={player.iron}
-              />
-            </li>
+            <Player
+              id={player.id}
+              name={player.name}
+              scholars={player.scholars}
+              incrementScore={incrementValue}
+              incrementIncome={incrementIncome}
+              cities={player.cities}
+              farms={player.farms}
+              mines={player.mines}
+              healers={player.healers}
+              teachers={player.teachers}
+              shamans={player.shamans}
+              worker={player.workers}
+              coin={player.coins}
+              lumen={player.lumen}
+              food={player.food}
+              iron={player.iron}
+            />
           );
         })}
       </ul>
