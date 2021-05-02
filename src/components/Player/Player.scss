@@ -5,6 +5,10 @@
   background: $light;
   position: relative;
 
+  h1 {
+    margin: 30px;
+    display: inline-block;
+  }
   p {
     margin: 0;
     padding: 0.3rem 0.7rem 0.7rem;
@@ -44,6 +48,38 @@
     }
     &:focus {
       // styles for when it has focus (e.g. with keyboard navigation)
+    }
+  }
+  .resource-button {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-content: space-between;
+    button {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin: 0 50px 30px 0;
+      flex-direction: row;
+      font-family: inherit;
+      transition: all 0.2s ease;
+      width: 100px;
+      height: 100px;
+
+      // other styles
+
+      &:hover {
+        border: 5px solid peru;
+      }
+      &:active {
+        // styles for when the button is being pressed
+        transform: scale(0.9);
+        background-color: peru;
+        color: white;
+      }
+      &:focus {
+        // styles for when it has focus (e.g. with keyboard navigation)
+      }
     }
   }
 }

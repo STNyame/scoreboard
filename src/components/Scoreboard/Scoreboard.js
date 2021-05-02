@@ -14,72 +14,7 @@ function compareName(a, b) {
 }
 
 export default function Scoreboard() {
-  const [players, set_players] = useState([
-    // {
-    //   id: 1,
-    //   name: "Violeta",
-    //   scholars: 0,
-    //   cities: 1,
-    //   healers: 0,
-    //   teachers: 0,
-    //   shamans: 0,
-    //   farms: 0,
-    //   mines: 0,
-    //   workers: 0,
-    //   coins: 0,
-    //   lumen: 0,
-    //   food: 0,
-    //   iron: 0,
-    // },
-    // {
-    //   id: 2,
-    //   name: "Eszter",
-    //   scholars: 0,
-    //   cities: 1,
-    //   healers: 0,
-    //   teachers: 0,
-    //   shamans: 0,
-    //   farms: 0,
-    //   mines: 0,
-    //   workers: 0,
-    //   coins: 0,
-    //   lumen: 0,
-    //   food: 0,
-    //   iron: 0,
-    // },
-    // {
-    //   id: 3,
-    //   name: "Jeroen v2",
-    //   scholars: 0,
-    //   cities: 1,
-    //   healers: 0,
-    //   teachers: 0,
-    //   shamans: 0,
-    //   farms: 0,
-    //   mines: 0,
-    //   workers: 0,
-    //   coins: 0,
-    //   lumen: 0,
-    //   food: 0,
-    //   iron: 0,
-    // },
-    // {
-    //   id: 4,
-    //   name: "Lisa",
-    //   scholars: 0,
-    //   cities: 1,
-    //   healers: 0,
-    //   teachers: 0,
-    //   shamans: 0,
-    //   farms: 0,
-    //   mines: 0,
-    //   workers: 0,
-    //   coins: 0,
-    //   lumen: 0,
-    //   food: 0,
-    //   iron: 0,
-    // },
-  ]);
+  const [players, set_players] = useState([]);
   const [sort_by, set_sort_by] = useState("score");
 
   const players_sorted =

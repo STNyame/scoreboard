@@ -16,7 +16,8 @@ export default function Player(props) {
 
   return (
     <li className="Player">
-      <div>
+      <h1>{props.name}</h1>
+      <div className="resource-button">
         <button name="cities" onClick={onClickIncrement}>
           Cities: {props.cities}
         </button>
@@ -27,7 +28,7 @@ export default function Player(props) {
           Mines: {props.mines}
         </button>
       </div>
-      <div>
+      <div className="resource-button">
         <button id="scholarbtn" name="healers" onClick={onClickIncrement}>
           Healers: {props.healers}
         </button>
@@ -43,13 +44,15 @@ export default function Player(props) {
         style={{ width: props.score + "%" }}
       />
       <div>
-        {props.name} Scholars: {props.scholars} Worker: {props.worker} Coin:
-        {props.coin} Lumen: {props.lumen}
+        {/* <p>Scholars: {props.scholars}</p> */}
+        <p>Workers: {props.worker}</p>
+        <p>Coins: {props.coin}</p>
+        <p>Lumen: {props.lumen}</p>
         <button className="income-button" onClick={onClickIncome}>
           increment
         </button>
       </div>
-      <div>
+      <div className="resource-button">
         <button name="food" onClick={onClickIncrement}>
           Food: {props.food}{" "}
         </button>{" "}
